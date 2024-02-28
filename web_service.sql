@@ -1,11 +1,7 @@
--- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
---
--- Servidor: localhost
--- Tiempo de generación: 27-04-2021 a las 20:10:18
--- Versión del servidor: 8.0.19
--- Versión de PHP: 7.4.15
+-- Base de datos: web_service
+-- Proyecto: Web Service RESTful en PHP con MySQL (CRUD)
+-- Autor: mroblesdev
+-- https://github.com/mroblesdev/web_service_php
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
