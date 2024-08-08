@@ -5,14 +5,15 @@ class Conexion
 { 
     private $hostBd = 'localhost'; 
     private $nombreBd = 'web_service'; 
-    private $usuarioBd = 'root'; 
+    private $usuarioBd = 'root';
+    private $passwordbs = ''; 
     private $pdo; // Propiedad para almacenar el objeto PDO 
  
     public function __construct() 
     { 
         try { 
             // Crear una nueva conexión PDO 
-            $this->pdo = new PDO("mysql:host=$this->hostBd;dbname=$this->nombreBd;charset=utf8", $this->usuarioBd); 
+            $this->pdo = new PDO("mysql:host=$this->hostBd;dbname=$this->nombreBd;charset=utf8", $this->usuarioBd, $this->passwordbs); 
  
             // Establecer el modo de errores de PDO a excepciones 
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 

@@ -1,7 +1,5 @@
--- Base de datos: web_service
--- Proyecto: Web Service RESTful en PHP con MySQL (CRUD)
--- Autor: mroblesdev
--- https://github.com/mroblesdev/web_service_php
+
+-- Base de datos obtenida directamente del video.
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
