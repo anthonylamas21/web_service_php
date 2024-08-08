@@ -3,7 +3,8 @@
 require 'conexion.php'; 
 $conexion = new Conexion(); 
 $pdo = $conexion->obtenerConexion(); 
-// Listar registros y consultar registro 
+ 
+//Consulta de los datos 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') { 
  
     $sql = "SELECT * FROM contactos"; 
@@ -21,8 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     echo json_encode($stmt->fetchAll()); 
     exit; 
 } 
-
-// Insertar registro 
+ 
+ 
+// Agregar Datos 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
     $sql = "INSERT INTO contactos (nombre, telefono, email) VALUES(:nombre, :telefono, :email)"; 
     $stmt = $pdo->prepare($sql); 
@@ -33,12 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idPost = $pdo->lastInsertId(); 
     if ($idPost) { 
         header("HTTP/1.1 200 Ok"); 
+        echo json_encode("Registro agregado"); 
         echo json_encode($idPost); 
+
         exit; 
     } 
 } 
-
-// Actualizar registro 
+ 
+ 
+// Actualizar datos de los registros cualquiera todos 
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') { 
     $sql = "UPDATE contactos SET nombre=:nombre, telefono=:telefono, email=:email WHERE id=:id"; 
     $stmt = $pdo->prepare($sql); 
@@ -47,19 +52,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $stmt->bindValue(':email', $_GET['email']); 
     $stmt->bindValue(':id', $_GET['id']); 
     $stmt->execute(); 
+    echo json_encode("Registro Actualizado con Exito"); 
+
     header("HTTP/1.1 200 Ok"); 
     exit; 
 } 
 
-//Eliminar registro 
+//Eliminar datos completo 
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') { 
     $sql = "DELETE FROM contactos WHERE  id=:id"; 
     $stmt = $pdo->prepare($sql); 
     $stmt->bindValue(':id', $_GET['id']); 
     $stmt->execute(); 
+    echo json_encode("Registro Eliminado con Exito"); 
     header("HTTP/1.1 200 Ok"); 
     exit; 
 } 
  
-// Si no coincide con ningún método de solicitud, devolver Bad Request 
-header("HTTP/1.1 400 Bad Request"); 
+// Si no coincide con ningún método de solicitud, devolver Bad Request  
+header("HTTP/1.1 400 Bad Request");  
